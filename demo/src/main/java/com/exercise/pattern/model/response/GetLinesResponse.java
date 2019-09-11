@@ -17,7 +17,7 @@ import java.util.List;
 public class GetLinesResponse implements Serializable {
     private static final long serialVersionUID = -5777534248933141656L;
 
-    private String status;
+    private Status status;
     private String message;
     private BigInteger linesFound;
     private List<Line> lines;

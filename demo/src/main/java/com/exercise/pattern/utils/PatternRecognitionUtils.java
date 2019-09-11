@@ -5,15 +5,17 @@ import com.exercise.pattern.model.Fraction;
 import com.exercise.pattern.model.Line;
 import com.exercise.pattern.model.Point;
 import com.exercise.pattern.model.request.PostPointRequest;
+import com.exercise.pattern.utils.predicate.HVLinePredicate;
+import com.exercise.pattern.utils.predicate.ObliqueLinePredicate;
 import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cglib.core.CollectionUtils;
 import org.springframework.util.Assert;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
+import static java.util.Objects.isNull;
 
 @Slf4j
 public class PatternRecognitionUtils {
@@ -52,7 +54,7 @@ public class PatternRecognitionUtils {
 
     public static boolean isValidLine(Line line, BigInteger numberRequest) {
         boolean valid = false;
-        if (line.getLinePoints().size() >= numberRequest.intValue()) {
+        if (!isNull(line) && line.getLinePoints().size() >= numberRequest.intValue()) {
             log.info("Valid line found");
             valid = true;
         }
@@ -69,9 +71,16 @@ public class PatternRecognitionUtils {
 
     public static Fraction calculateQ(Pair<Point, Point> pair, Fraction m) {
         Point p1 = pair.getKey();
-        BigInteger tempY = p1.getY().multiply(m.getDenominator());
-        BigInteger tempMX = m.getNumerator().multiply(p1.getX());
-        BigInteger numerator = tempY.subtract(tempMX);
-        return new Fraction(numerator, m.getDenominator()); // q = y1-(m*x1)
+        return m.multiply(p1.getX()).negate().add(p1.getY()); // q = y1-(m*x1)
+    }
+
+    public static Line checkPresent(List<Line> tempLines, Line newLine, BigInteger x, BigInteger y) {
+        Collection presentList = CollectionUtils.filter(tempLines, new HVLinePredicate(x, y));
+        return presentList.isEmpty() ? newLine : null;
+    }
+
+    public static Line checkPresentOblique(List<Line> tempLines, Line newLine, Fraction m, Fraction q) {
+        Collection presentList = CollectionUtils.filter(tempLines, new ObliqueLinePredicate(m, q));
+        return presentList.isEmpty() ? newLine : null;
     }
 }

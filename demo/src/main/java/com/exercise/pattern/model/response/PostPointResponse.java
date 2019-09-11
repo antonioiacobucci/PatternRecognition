@@ -12,6 +12,6 @@ import java.io.Serializable;
 public class PostPointResponse implements Serializable {
     private static final long serialVersionUID = 3926242570007497876L;
 
-    private String status;
+    private Status status;
     private String message;
 }

@@ -14,7 +14,7 @@ import java.util.Set;
 public class GetSpaceResponse implements Serializable {
     private static final long serialVersionUID = 3006981677632344734L;
 
-    private String status;
+    private Status status;
     private String message;
     private Set<Point> pointSet;
 }

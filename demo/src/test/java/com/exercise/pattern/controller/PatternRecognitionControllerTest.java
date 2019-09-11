@@ -38,10 +38,10 @@ public class PatternRecognitionControllerTest {
         request.setX(BigInteger.ONE);
         request.setY(BigInteger.ZERO);
         PostPointResponse response = controller.postPoint(request);
-        Assert.assertEquals(Status.OK.getValue(), response.getStatus());
+        Assert.assertEquals(Status.OK, response.getStatus());
 
         PostPointResponse response2 = controller.postPoint(request);
-        Assert.assertEquals(Status.KO.getValue(), response2.getStatus());
+        Assert.assertEquals(Status.KO, response2.getStatus());
         Assert.assertEquals(1, pointSet.size());
     }
 
@@ -57,12 +57,12 @@ public class PatternRecognitionControllerTest {
     @Test
     public void deleteSpaceTest() {
         DeleteSpaceResponse response = controller.deleteSpace();
-        Assert.assertEquals(Status.KO.getValue(), response.getStatus());
+        Assert.assertEquals(Status.KO, response.getStatus());
 
         pointSet.add(new Point(new BigInteger("1"), new BigInteger("3")));
         pointSet.add(new Point(new BigInteger("-1"), new BigInteger("2")));
         DeleteSpaceResponse response2 = controller.deleteSpace();
-        Assert.assertEquals(Status.OK.getValue(), response2.getStatus());
+        Assert.assertEquals(Status.OK, response2.getStatus());
     }
 
     @Test

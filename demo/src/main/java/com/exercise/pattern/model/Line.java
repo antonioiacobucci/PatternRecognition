@@ -9,6 +9,7 @@ import java.util.Set;
 public class Line {
     private BigInteger id;
     private String description;
+    private LineType type;
     private Fraction m;
     private Fraction q;
     private Set<Point> linePoints;

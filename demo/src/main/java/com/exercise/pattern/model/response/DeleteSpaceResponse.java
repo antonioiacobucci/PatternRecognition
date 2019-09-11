@@ -12,6 +12,6 @@ import java.io.Serializable;
 public class DeleteSpaceResponse implements Serializable {
     private static final long serialVersionUID = 3536203799551377825L;
 
-    private String status;
+    private Status status;
     private String message;
 }

@@ -49,6 +49,24 @@ public class Fraction {
         return calculateGCD(denominator, numerator.mod(denominator));
     }
 
+    public Fraction add(Fraction toAdd) {
+        BigInteger resultNum = (this.getNumerator().multiply(toAdd.getDenominator())).add(toAdd.getNumerator().multiply(this.getDenominator())); //n1*d2 + n2*d1
+        BigInteger resultDen = this.getDenominator().multiply(toAdd.getDenominator()); //d1*d2
+        return new Fraction(resultNum, resultDen);
+    }
+
+    public Fraction add(BigInteger toAdd) {
+        return add(new Fraction(toAdd, BigInteger.ONE));
+    }
+
+    public Fraction multiply(Fraction toMultiply) {
+        return new Fraction(this.numerator.multiply(toMultiply.getNumerator()), this.denominator.multiply(toMultiply.getDenominator()));
+    }
+
+    public Fraction multiply(BigInteger toMultiply) {
+        return multiply(new Fraction(toMultiply, BigInteger.ONE));
+    }
+
     @Override
     public String toString() {
         String fraction = String.valueOf(this.numerator);
@@ -76,5 +94,9 @@ public class Fraction {
     public Fraction abs() {
         BigInteger abs = this.numerator.abs();
         return new Fraction(abs, this.denominator);
+    }
+
+    public Fraction negate() {
+        return new Fraction(this.numerator.negate(), this.denominator);
     }
 }
