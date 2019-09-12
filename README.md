@@ -34,7 +34,7 @@ All points in the plane are stored in a Set<Point> called pointSet.
 	- p<2 -> 0 lines.
 	- n<2 -> 0 lines(actually infinite lines for n=1).
 	- n>p -> 0 lines.
-- Algorithm: basically the algorithm is made up of two main methods: pairs creation and line retrieval. Let's analyze both of them.
+- Algorithm: basically the algorithm is made up of two main methods: pairs creation and lines retrieval. Let's analyze both of them.
 
 ### Pairs creation (createPairList)
 
@@ -53,7 +53,7 @@ Matches:  5(4)/2 = 10
 | A-E |  --  |  --  |  --  |  --  |
 |  --  |  --  |  --  |  --  |  -- |
 
-### Line retrieval (retrieveLines)
+### Linse retrieval (retrieveLines)
 
 Complexity: n(n-1)(n-2)/2
 
